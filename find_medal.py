@@ -26,37 +26,41 @@ for infile in glob.glob( os.path.join(path, '*.*') ):
   
   img_rgb = cv2.imread(infile)
   img2 = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
-  template = cv2.imread('medals/h2a/sword_kill.png',0)
-  w, h = template.shape[::-1]
+  for template_file in glob.glob('medals/h2a/*.*'):
+    template = cv2.imread(template_file,0)
+    medal = os.path.basename(template_file)  
+    w, h = template.shape[::-1]
 
-  for meth in methods:
-      img = img2.copy()
-      method = eval(meth)
+    for meth in methods:
+        img = img2.copy()
+        method = eval(meth)
 
-      # Apply template Matching
-      res = cv2.matchTemplate(img,template,method)
-      min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
+        # Apply template Matching
+        res = cv2.matchTemplate(img,template,method)
+        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
 
-      # If the method is TM_SQDIFF or TM_SQDIFF_NORMED, take minimum
-      if method in [cv2.TM_SQDIFF, cv2.TM_SQDIFF_NORMED]:
-          top_left = min_loc
-      else:
-          top_left = max_loc
-      bottom_right = (top_left[0] + w, top_left[1] + h)
+        # If the method is TM_SQDIFF or TM_SQDIFF_NORMED, take minimum
+        if method in [cv2.TM_SQDIFF, cv2.TM_SQDIFF_NORMED]:
+            top_left = min_loc
+        else:
+            top_left = max_loc
+        bottom_right = (top_left[0] + w, top_left[1] + h)
 
-      img_rgb_output = img_rgb.copy()
+        img_rgb_output = img_rgb.copy()
 
-      threshold = 0.9
-      loc = np.where( res >= threshold)
-      matches = 0
-      for pt in zip(*loc[::-1]):
-          matches = matches + 1
-          cv2.rectangle(img_rgb_output, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
-          cv2.imwrite('matches/' + fname + '.png', img_rgb_output)
+        threshold = 0.9
+        loc = np.where( res >= threshold)
+        matches = 0
+        for pt in zip(*loc[::-1]):
+            matches = matches + 1
+            cv2.rectangle(img_rgb_output, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
 
-      print "Found " + str(matches) + " matches"
+        if matches > 0:
+            cv2.imwrite('matches/' + fname + '-' + medal + '.png', img_rgb_output)
 
-      bottom_right = 0
-      top_left = 0
+        print "Found " + str(matches) + " matches"
+
+        bottom_right = 0
+        top_left = 0
 
 
