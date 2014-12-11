@@ -15,20 +15,18 @@ parser.add_argument("-i","--input", default='./', help="Input directory.")
 args = parser.parse_args()
 path = args.input
 
-for infile in glob.glob( os.path.join(path, '*.*') ):
+tag_output = []
+for infile in glob.glob( os.path.join(path, '*.png') ):
   ext = os.path.splitext(infile)[1][1:] #get the filename extenstion
   fname = os.path.basename(infile)
 
-  if ext == "png" or ext == "jpg" or ext == "bmp" or ext == "tiff" or ext == "pbm":
-    print infile
-  
-  
-  
   img_rgb = cv2.imread(infile)
   img2 = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
-  for template_file in glob.glob('medals/h2a/*.*'):
+  for template_file in glob.glob('medals/h2c/*.*'):
     template = cv2.imread(template_file,0)
-    medal = os.path.basename(template_file)  
+    path, medal = os.path.split(template_file)
+    path = path.split(os.sep)
+    game = path[1]
     w, h = template.shape[::-1]
 
     for meth in methods:
@@ -56,11 +54,18 @@ for infile in glob.glob( os.path.join(path, '*.*') ):
             cv2.rectangle(img_rgb_output, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
 
         if matches > 0:
+            if not game in tag_output:
+              tag_output.append(game)
+
+            if not medal in tag_output:
+              tag_output.append(medal)
+
             cv2.imwrite('matches/' + fname + '-' + medal + '.png', img_rgb_output)
 
-        print "Found " + str(matches) + " matches"
 
-        bottom_right = 0
-        top_left = 0
-
-
+loop = 0
+for tag in tag_output:
+  if loop > 0:
+    sys.stdout.write(', ')
+  sys.stdout.write(tag)
+  loop = loop + 1
