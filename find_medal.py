@@ -27,6 +27,7 @@ for infile in glob.glob( os.path.join(path, '*.png') ):
     path, medal = os.path.split(template_file)
     path = path.split(os.sep)
     game = path[1]
+    medal_name = os.path.splitext(os.path.basename(template_file))[0]
     w, h = template.shape[::-1]
 
     for meth in methods:
@@ -57,8 +58,8 @@ for infile in glob.glob( os.path.join(path, '*.png') ):
             if not game in tag_output:
               tag_output.append(game)
 
-            if not medal in tag_output:
-              tag_output.append(medal)
+            if not medal_name in tag_output:
+              tag_output.append(medal_name)
 
             cv2.imwrite('matches/' + fname + '-' + medal + '.png', img_rgb_output)
 
