@@ -48,7 +48,7 @@ for infile in glob.glob( os.path.join(path, '*.png') ):
 
         img_rgb_output = img_rgb.copy()
 
-        threshold = 0.9
+        threshold = 0.8
         loc = np.where( res >= threshold)
         matches = 0
         for pt in zip(*loc[::-1]):
