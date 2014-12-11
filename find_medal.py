@@ -55,8 +55,8 @@ for infile in glob.glob( os.path.join(path, '*.png') ):
             cv2.rectangle(img_rgb_output, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
 
         if matches > 0:
-            if not game in tag_output:
-              tag_output.append(game)
+            #if not game in tag_output:
+            #  tag_output.append(game)
 
             if not medal_name in tag_output:
               tag_output.append(medal_name)
