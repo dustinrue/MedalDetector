@@ -7,6 +7,7 @@ import glob
 import argparse
 from matplotlib import pyplot as plt
 
+write_out_matches = False
 
 # All the 6 methods for comparison in a list
 methods = ['cv2.TM_CCOEFF_NORMED']
@@ -60,8 +61,8 @@ for infile in glob.glob( os.path.join(path, '*.png') ):
 
             if not medal_name in tag_output:
               tag_output.append(medal_name)
-
-            cv2.imwrite('matches/' + fname + '-' + medal + '.png', img_rgb_output)
+            if write_out_matches:
+              cv2.imwrite('matches/' + fname + '-' + medal + '.png', img_rgb_output)
 
 
 loop = 0
