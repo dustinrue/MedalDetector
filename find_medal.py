@@ -22,7 +22,7 @@ for infile in glob.glob( os.path.join(path, '*.png') ):
 
   img_rgb = cv2.imread(infile)
   img2 = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
-  for template_file in glob.glob('medals/h2c/*.*'):
+  for template_file in glob.glob('medals/*/*.*'):
     template = cv2.imread(template_file,0)
     path, medal = os.path.split(template_file)
     path = path.split(os.sep)
