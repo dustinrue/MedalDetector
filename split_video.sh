@@ -9,4 +9,4 @@ if [ "${DEST_DIR}" == "" ]; then
 fi
 
 rm -rf ${DEST_DIR}/*.png
-ffmpeg -i "${SOURCE_FILE}"  -vf fps=1/2 -f image2 "${DEST_DIR}/frame-%07d.png"
+ffmpeg -i "${SOURCE_FILE}"  -vf fps=1 -f image2 "${DEST_DIR}/frame-%07d.png"
