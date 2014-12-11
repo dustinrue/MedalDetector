@@ -5,6 +5,6 @@ Hints from <http://opencv-python-tutroals.readthedocs.org/en/latest/py_tutorials
 
 How to use:
 
-*Split a video using split_video.sh <path to video> source
-*Run ./find_medals.py -i source
-*Find matching frames in the matches dir
+* Split a video using split_video.sh <path to video> source
+* Run ./find_medals.py -i source
+* Find matching frames in the matches dir
