@@ -8,6 +8,7 @@ Required:
   * ffmpeg
   * tag
   * opencv
+  * imagemagick
 * Some symlinks
   * cd /Library/Python/2.7/site-packages/
   * sudo ln -s /usr/local/Cellar/opencv/2.4.9/lib/python2.7/site-packages/cv.py cv.py
