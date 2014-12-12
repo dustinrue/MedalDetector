@@ -18,7 +18,29 @@ args = parser.parse_args()
 path = args.input
 in_debug = args.debug
 
+
+class Medal(object):
+  def __init__(self, name=None, template=None, path=None, medal_title=None, game=None, width=None, height=None):
+    self.name = name
+    self.template = template
+    self.medal_path = medal_path
+    self.medal_title = medal_title
+    self.game = game
+    self.width = width
+    self.height = height
+
+medals = []
 tag_output = []
+
+for template_file in glob.glob('/usr/local/lib/MedalDetector/medals/*/*.*'):
+  template = cv2.imread(template_file,0)
+  medal_path, medal_title = os.path.split(template_file)
+  medal_path = medal_path.split(os.sep)
+  game = medal_path[1]
+  medal_name = os.path.splitext(os.path.basename(template_file))[0]
+  w, h = template.shape[::-1]
+  medals.append(Medal(medal_name,template,medal_path,medal_title,game,w,h))
+
 for infile in glob.glob( os.path.join(path, '*.png') ):
   fname = os.path.basename(infile)
 
@@ -27,14 +49,15 @@ for infile in glob.glob( os.path.join(path, '*.png') ):
 
   img_rgb = cv2.imread(infile)
   img2 = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
-  for template_file in glob.glob('/usr/local/lib/MedalDetector/medals/*/*.*'):
-    template = cv2.imread(template_file,0)
-    path, medal = os.path.split(template_file)
-    path = path.split(os.sep)
-    game = path[1]
-    medal_name = os.path.splitext(os.path.basename(template_file))[0]
+  for a_medal in medals:
+    template = a_medal.template
+    path = a_medal.medal_path
+    medal = a_medal.medal_title
+    game = a_medal.game
+    medal_name = a_medal.name
     fname_no_extension = os.path.splitext(fname)[0][0:] #get the filename extenstion
-    w, h = template.shape[::-1]
+    w = a_medal.width
+    h = a_medal.height
 
     if in_debug:
       sys.stderr.write(" - Looking for " + medal_name + "\n")
