@@ -3,9 +3,9 @@
 VID="$1"
 BNAME=`basename "${VID}"`
 
-mkdir -p source/${BNAME}
-./split_video.sh "${VID}" source/${BNAME} &> /dev/null
-TAGS=`./find_medal.py -i source/${BNAME}`
+mkdir -p ~/tmp/source/${BNAME}
+split_video.sh "${VID}" ~/tmp/source/${BNAME}
+TAGS=`find_medal.py -i ~/tmp/source/${BNAME}`
 echo ${TAGS} ${VID}
 tag -a "${TAGS}" "${VID}"
-rm -rf source/${BNAME}
+rm -rf ~/tmp/source/${BNAME}
