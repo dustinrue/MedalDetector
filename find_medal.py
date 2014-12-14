@@ -3,6 +3,8 @@ import cv2
 import numpy as np
 import os
 import sys
+import sys
+sys.path.append("/usr/local/lib/MedalDetector")
 import glob
 import argparse
 import classes.medal as medal
