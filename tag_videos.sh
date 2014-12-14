@@ -15,15 +15,9 @@ elif [ -f "${DIR}" ]; then
 fi
 
 JOBS=0
-echo "Creating up to 6 jobs, this script might return immediately but there are background jobs, be patient"
 for I in ${FILES}
 do
-  tag_video.sh "${DIR}"/"${I}" &
-  JOBS=`echo ${JOBS} + 1 | bc`
-  if [ ${JOBS} -gt 5 ]; then
-    wait
-    JOBS=0
-  fi
+  tag_video.sh "${DIR}"/"${I}" 
 done
 
 wait
