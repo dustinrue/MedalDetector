@@ -8,7 +8,7 @@ Finder tags to downloaded videos based on what medals were earned in the clip
 Requirements
 ------------
 
-MedalDetector is currently meant for OS X and:
+To use MedalDetector on OS X you need:
 
 * Python 2.7
 * Via Brew
@@ -21,6 +21,17 @@ MedalDetector is currently meant for OS X and:
   * sudo ln -s /usr/local/Cellar/opencv/2.4.9/lib/python2.7/site-packages/cv.py cv.py
   * sudo ln -s /usr/local/Cellar/opencv/2.4.9/lib/python2.7/site-packages/cv2.so cv2.so
 * /usr/local/bin must be in your PATH
+
+To use MedalDetector on Ubuntu 14.04 you need:
+
+* Python 2.7
+* python-opencv
+* python-matplotlib
+* python-software-properties
+* add-apt-repository ppa:mc3man/trusty-media
+* ffmpeg
+* php5-curl
+* php5-cli
 
 How to use
 ----------
