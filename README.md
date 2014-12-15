@@ -2,7 +2,7 @@ MedalDetector
 =============
 
 MedalDetector detects medals earned in Halo: The Master Chief Collection Xbox 
-GameDVR clip. Combined with GameDVR2Local, MedalDetector allows you to assign 
+GameDVR clips. Combined with GameDVR2Local, MedalDetector allows you to assign
 Finder tags to downloaded videos based on what medals were earned in the clip
 
 Requirements
