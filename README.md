@@ -25,11 +25,11 @@ MedalDetector is currently meant for OS X and:
 How to use
 ----------
 
-* For single file, use tag_video.sh
+* For single file, use tag_video.sh `<path to video`
 * For a directory or file containing a list of files (with full path) use tag_videos.sh
 * To manually process a video so you can do what you wish with the output run:
-  * split_video.sh <path to video> <path to outputdir>
-  * find_medal.py -i <path to outputdir>
+  * split_video.sh `<path to video> <path to outputdir>`
+  * find_medal.py -i `<path to outputdir>`
 
 Hints from <http://opencv-python-tutroals.readthedocs.org/en/latest/py_tutorials/py_imgproc/py_template_matching/py_template_matching.html> and <https://jjyap.wordpress.com/2014/05/24/installing-opencv-2-4-9-on-mac-osx-with-python-support/>
 
