@@ -30,7 +30,7 @@ def detect(medals, image, results):
     sys.stderr.write("Processing " + fname + "\n")
 
   img_rgb = cv2.imread(image)
-  img2 = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
+  img2 = cv2.cvtColor(img_rgb, cv2.COLOR_RGB2GRAY)
 
   for a_medal in medals:
     template = a_medal.template
@@ -42,8 +42,8 @@ def detect(medals, image, results):
     w = a_medal.width
     h = a_medal.height
 
-    if in_debug:
-      sys.stderr.write(" - Looking for " + medal + "\n")
+    #if in_debug:
+    #  sys.stderr.write(" - Looking for " + medal + "\n")
 
     img = img2.copy()
     method = cv2.TM_CCOEFF_NORMED
