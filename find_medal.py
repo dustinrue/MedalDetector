@@ -59,7 +59,9 @@ def detect(medals, image, results):
 
     img_rgb_output = img_rgb.copy()
 
-    threshold = 0.8951
+    # 0.8951 can tell the difference between perfect dmr and perfect magnum
+    #threshold = 0.8951
+    threshold = 0.8012
 
     loc = np.where( res >= threshold)
     matches = 0

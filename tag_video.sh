@@ -9,4 +9,4 @@ split_video.sh "${VID}" ~/tmp/source/${BNAME}
 TAGS=`find_medal.py -i ~/tmp/source/${BNAME}`
 echo ${TAGS} ${VID}
 tag -a "${TAGS}" "${VID}"
-#rm -rf ~/tmp/source/${BNAME}
+rm -rf ~/tmp/source/${BNAME}
