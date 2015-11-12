@@ -42,11 +42,12 @@ def detect(medals, image, results):
     w = a_medal.width
     h = a_medal.height
 
-    #if in_debug:
-    #  sys.stderr.write(" - Looking for " + medal + "\n")
+    if in_debug:
+      sys.stderr.write(" - Looking for " + medal + "\n")
 
     img = img2.copy()
     method = cv2.TM_CCOEFF_NORMED
+#    method = cv2.cv2.TM_CCORR_NORMED
 
     # Apply template Matching
     res = cv2.matchTemplate(img,template,method)
@@ -58,7 +59,8 @@ def detect(medals, image, results):
 
     img_rgb_output = img_rgb.copy()
 
-    threshold = 0.8
+    threshold = 0.8951
+
     loc = np.where( res >= threshold)
     matches = 0
 
