@@ -61,7 +61,7 @@ def detect(medals, image, results):
 
     # 0.8951 can tell the difference between perfect dmr and perfect magnum
     #threshold = 0.8951
-    threshold = 0.8012
+    threshold = 0.9
 
     loc = np.where( res >= threshold)
     matches = 0
@@ -87,7 +87,7 @@ def detect(medals, image, results):
 #preload the medals
 medals = []
 
-for template_file in glob.glob('/usr/local/lib/MedalDetector/medals/*/*.*'):
+for template_file in glob.glob('/usr/local/lib/MedalDetector/medals/destiny1/*.*'):
   template = cv2.imread(template_file,0)
   medal_path, medal_title = os.path.split(template_file)
   medal_path = medal_path.split(os.sep)
